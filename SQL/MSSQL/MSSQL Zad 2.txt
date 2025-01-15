@@ -1,0 +1,83 @@
+Zadanie 1.
+Proszę wypisać numer zamówienia i datę zamówienia (OrderID i OrderDate) z tabeli z zamówieniami (Orders) oraz identyfikator klienta, jego nazwę i kraj (pola CustomerID, CompanyName, Country z tabeli Customers). Proszę połączyć tabele wykorzystując klauzulę WHERE.
+
+Zadanie 2.	
+Proszę zmodyfikować poprzednie zadanie tak, by złączenie tabel było zrealizowane przy pomocy operatora JOIN w klauzuli FROM.
+
+Zadanie 3.	
+Proszę wypisać wszystkie dane z tabeli [Order Details] oraz Identyfikator, nazwę i bieżącą cenę produktu (kolumny ProductID, ProductName i UnitPrice z tabeli Products).
+
+Zadanie 4.	
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by wyświetlana była też data zamówienia oraz by między numerem zamówienia a datą wyświetlone były dane klienta – jego identyfikator i nazwa (pola CustomerID i CompanyName z tabeli Customers). Wymaga to złączenia kilku tabel.
+
+Zadanie 5.	!!!!!!!!!
+Proszę wypisać wszystkich klientów, którzy nigdy jeszcze nic nie zamawiali. Chcemy wyświetlić tylko ich identyfikatory i nazwy (CustomerID oraz CompanyName w tabeli Customers). Klient, który nic nie zamawiał to taki klient, którego identyfikatora nie ma na żadnym zamówieniu w tabeli Orders. 
+Proszę wykorzystać LEFT JOIN.
+
+Zadanie 6.	
+Proszę wypisać ilu jest klientów (tabela Customers). Należy wykorzystać funkcję agregującą COUNT.
+
+Zadanie 7.	
+Proszę zmodyfikować wyniki poprzedniego zapytania tak, by policzyć tylko klientów z Niemiec.
+
+Zadanie 8.	
+Proszę zmodyfikować wyniki poprzedniego zapytania tak, by policzyć klientów z Niemiec i Austrii.
+
+Zadanie 9.	
+Proszę dla każdego kraju (Country) wypisać ilu mamy klientów z tego kraju. Dane są w tabeli Customers. Dane powinny być posortowane rosnąco według nazwy kraju.
+
+Zadanie 10.	
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by dane były posortowane malejąco według liczby klientów, a jeśli z pewnych krajów jest tyle samo klientów, to rekordy te powinny być posortowane rosnąco według nazwy kraju.
+
+Zadanie 11.	!!!!!!
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by wyświetlane były tylko kraje, z których mamy więcej niż pięciu klientów.
+
+Zadanie 12.	
+Proszę wypisać, ilu mamy klientów z każdego kraju i miasta. – GRUPOWANIE WIELOKROTNE
+
+SELECT Country, COUNT(*) FROM Customers
+GROUP BY Country, City
+
+
+Zadanie 13.	
+Proszę wypisać, ilu mamy klientów z każdego kraju i miasta, przy czym chcemy zliczać tylko tych klientów, którzy mają nazwę rozpoczynającą się od C lub A (nazwa klienta jest w kolumnie CompanyName)
+
+SELECT Country, City, COUNT(*) FROM Customers
+WHERE CompanyName LIKE ‘[AC]%’
+GROUP BY Country, City
+
+Zadanie 14.	
+Weźmy pod uwagę tabelę Products. Proszę wypisać dla każdej kategorii (wystarczy CategoryID) ile jest w niej produktów (należy wykorzystać funkcję agregującą COUNT), jaka jest najmniejsza cena jednostkowa produktu (UnitPrice) w kategorii, największa cena jednostkowa produktu, średnia cena jednostkowa oraz ile w sumie jest jednostek towarów w magazynie (należy zsumować zawartość kolumny UnitsInStock). 
+
+Zadanie 15.	
+Proszę wypisać, ile jest produktów, których cena jednostkowa zawiera się w przedziale od 20 do 30 (łącznie z 20 i 30).
+
+Zadanie 16.	
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by wynik był podany dla każdej kategorii (CategoryID).
+
+Zadanie 17.	
+Proszę zmodyfikować rozwiązanie rozwiązanie zadania 15 zadania tak, by grupę rekordów stanowiły wszystkie rekordy, których pierwsza litera nazwy jest taka sama. (Produkty na tą samą literę)
+
+Zadanie 18.	
+Proszę zmodyfikować rozwiązanie 16 zadania tak, wyświetlone zostały dane dotyczące tylko tych kategorii, w których średnia cena jednostkowa jest większa niż 30 a mniejsza niż 50.
+
+Zadanie 19.	
+Proszę na podstawie tabeli [Order Details] wypisać jaka jest kwota na każdym zamówieniu (to ma być podsumowanie wszystkich pozycji szczegółowych każdego zamówienia). 
+
+Zadanie 20.	
+Proszę na podstawie tabeli [Order Details] oraz Orders wypisać jaka jest suma kwot na wszystkich zamówieniach w każdym roku.
+
+Zadanie 21.	
+Proszę na podstawie tabeli [Order Details] oraz Orders wypisać jaka jest suma kwot na wszystkich zamówieniach każdego klienta. Zestaw powinien zawierać dwie kolumny – CustomerID oraz suma kwot.
+
+Zadanie 22.	
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by oprócz identyfikatora klienta wyświetlana była też jego nazwa (tj. kolumna CompanyName z tabeli Customers). Zestaw powinien zawierać trzy kolumny – CustomerID, CompanyName oraz suma kwot.
+
+Zadanie 23.	
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by dane były posortowane malejąco według sum kwot.
+
+Zadanie 24.	
+Proszę zmodyfikować rozwiązanie poprzedniego zadania tak, by dane były posortowane malejąco według sum kwot i w zestawie było tylko 3 rekordy (TOP 3).
+
+Zadanie 25.	
+Proszę zmodyfikować rozwiązanie zadania 23 tak, by w zestawie wynikowym były dane tylko tych klientów, dla których suma kwot była większa niż 100 000.

@@ -1,0 +1,107 @@
+
+--1.1
+SELECT Przedmiot, symbol from Przedmiot;
+--1.2
+SELECT * from StopnieTytuly;
+--1.3
+SELECT * FROM Grupa;
+--1.4
+SELECT * from Osoba ORDER BY dataurodzenia DESC;
+--1.5
+SELECT imie || ' ' || nazwisko as "Pracownicy i studenci" FROM Osoba ORDER by nazwisko;
+--1.6
+--student lub dydaktyk
+--1.7
+SELECT DISTINCT imie from Osoba ORDER by imie;
+--1.8
+SELECT DISTINCT substr(datarekrutacji,0,4) FROM Student;
+
+
+--2.1
+SELECT imie FROM Osoba WHERE nazwisko LIKE 'K%';
+--2.2
+SELECT nazwisko FROM Osoba WHERE imie LIKE '%A%' and imie NOT LIKE '%B%';
+--2.3
+SELECT imie, nazwisko from Osoba WHERE length(imie) = 5;
+--2.4 
+SELECT * FROM Osoba WHERE dataurodzenia notNULL;
+--2.5
+SELECT * FROM Osoba WHERE dataurodzenia is NULL;
+
+
+--3.1
+SELECT * FROM Osoba o , Student s WHERE o.IdOsoba == s.IdOsoba;
+SELECT imie, nazwisko FROM Osoba INNER JOIN Student on Osoba.IdOsoba = Student.IdOsoba;
+--3.2
+SELECT imie, nazwisko FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba;
+--3.3
+SELECT imie, nazwisko FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba INNER JOIN Student on Osoba.IdOsoba = Student.IdOsoba;
+--3.4
+SELECT imie, nazwisko, datarekrutacji FROM Student inner JOIN Osoba on Student.IdOsoba = Osoba.IdOsoba 
+WHERE datarekrutacji < '2012-09-30' and datarekrutacji > '2012-07-10';
+--.3.5
+SELECT imie, nazwisko FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba WHERE idstopien isnull;
+--.3.6
+SELECT imie, nazwisko, stopien 
+FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba 
+LEFT JOIN StopnieTytuly on StopnieTytuly.IdStopien = Dydaktyk.IdStopien WHERE podlega isnull;
+--3.7
+SELECT imie, nazwisko, stopien
+FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba INNER JOIN StopnieTytuly on StopnieTytuly.IdStopien = Dydaktyk.IdStopien 
+where stopien LIKE '%doktor%'
+--3.8
+SELECT imie, nazwisko
+FROM Osoba INNER JOIN Student on Osoba.IdOsoba = Student.IdOsoba 
+INNER JOIN Ocena on Ocena.IdStudent = Student.IdOsoba 
+INNER JOIN Przedmiot on Ocena.IdPrzedmiot = Przedmiot.IdPrzedmiot
+where ocena = 2 and Przedmiot LIKE '%ana%'and datawystawienia LIKE '2013%';
+--3.9
+SELECT imie, nazwisko, stopien 
+FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba 
+LEFT JOIN StopnieTytuly on StopnieTytuly.IdStopien = Dydaktyk.IdStopien;
+--3.10
+SELECT imie, nazwisko, IFNULL(stopien, 'Brak') as Stopien
+FROM Osoba INNER JOIN Dydaktyk on Osoba.IdOsoba = Dydaktyk.IdOsoba 
+LEFT JOIN StopnieTytuly on StopnieTytuly.IdStopien = Dydaktyk.IdStopien;
+--3.11
+SELECT DISTINCT Przedmiot
+FROM Ocena iNNER JOIN Przedmiot on Ocena.IdPrzedmiot = Przedmiot.IdPrzedmiot
+--3.12
+SELECT imie, nazwisko, przedmiot, ocena
+FROM Osoba INNER JOIN Student on Osoba.IdOsoba = Student.IdOsoba 
+INNER JOIN Ocena on Ocena.IdStudent = Student.IdOsoba 
+INNER JOIN Przedmiot on Ocena.IdPrzedmiot = Przedmiot.IdPrzedmiot
+ORDER by  Przedmiot DESC, Ocena DESC
+--3.13
+SELECT o1.Imie, o1.Nazwisko, o2.Imie, o2.Nazwisko
+FROM Dydaktyk d1 inner JOIN Osoba o1 on o1.IdOsoba = d1.IdOsoba
+INNER JOIN Dydaktyk d2 on o1.IdOsoba = d2.Podlega
+inner JOIN Osoba o2 on o2.IdOsoba = d2.IdOsoba
+--3.14-
+SELECT o1.Imie, o1.Nazwisko, ocena, przedmiot, o2.Imie as "Imie Dydaktyka", o2.Nazwisko as "Nazwisko dydaktyka"
+FROM Osoba o1 inner JOIN Student s1 on o1.IdOsoba = s1.IdOsoba
+INNER JOIN Ocena oc on o1.IdOsoba = oc.IdStudent
+inner JOIN Przedmiot p on p.IdPrzedmiot = oc.IdPrzedmiot
+INNER JOIN Osoba o2 on oc.IdDydaktyk = o2.IdOsoba
+--3.15
+SELECT o.Imie || ' ' || o.Nazwisko as "Imie i nazwisko", 'Dydaktyk' as "Rola w uczelni"
+FROM Osoba o INNER JOIN Dydaktyk d on o.IdOsoba = d.IdOsoba
+UNION
+SELECT o.Imie || ' ' || o.Nazwisko as "Imie i nazwisko", 'Student' as "Rola w uczelni"
+FROM Osoba o INNER JOIN Student s on o.IdOsoba = s.IdOsoba
+ORDER by "Imie i nazwisko"
+--3.16
+SELECT imie, nazwisko
+FROM Osoba o INNER JOIN Student s on o.IdOsoba = s.IdOsoba
+INNER JOIN Dydaktyk d on o.IdOsoba = d.IdOsoba
+--3.17
+SELECT 'Pan ' || imie || ' ' || nazwisko
+FROM Osoba o INNER JOIN Student s on s.IdOsoba = o.IdOsoba
+WHERE imie not LIKE '%a'
+UNION
+SELECT 'Pani ' || imie || ' ' || nazwisko
+FROM Osoba o INNER JOIN Student s on s.IdOsoba = o.IdOsoba
+WHERE imie LIKE '%a'
+--3.18
+
+SELECT * FROM Ocena

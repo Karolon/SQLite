@@ -1,0 +1,62 @@
+•	
+Korzystając z bazy danych Northwind (należy ją odtworzyć z kopii zapasowej, jeśli nie jest jeszcze zainstalowana) utwórz zapytanie, które wyświetli identyfikator klienta oraz jego nazwę, miasto i kraj (pola CustomerID, CompanyName, City, Country z tabeli Customers).
+
+•	
+Zmodyfikuj poprzednie zdanie tak, by wyświetlani byli tylko klienci z Polski.
+
+•	
+Zmodyfikuj poprzednie zdanie tak, by wyświetlani byli tylko klienci z Polski i z Niemiec.
+
+•	
+Utwórz zapytanie, które z tabeli Customers wszystkich klientów, których nazwa (CompanyName) rozpoczyna się od litery C. Ilu ich jest?
+
+•	
+Utwórz zapytanie, które wyświetli z tabeli Customers wszystkich klientów, których nazwa (CompanyName) zawiera na początku lub w środku literę i, przy czym na końcu nazwy musi być litera a. Ilu ich jest?
+
+•	
+Utwórz zapytanie, które wyświetli z tabeli Customers wszystkich klientów, których nazwa (CompanyName) rozpoczyna się od liter A lub C lub N lub P. Ilu ich jest?
+
+•	
+Utwórz zapytanie, które wyświetli z tabeli Customers wszystkich klientów, których nazwa (CompanyName) rozpoczyna się od liter od A do H. Ilu ich jest?
+
+•	
+Utwórz zapytanie, które wyświetli z tabeli Customers wszystkich klientów, których nazwa (CompanyName) NIE rozpoczyna się od litery od C ani NIE rozpoczyna się od litery P. Ilu ich jest?
+
+•	
+Wyświetl kolumnę Country z tabeli Customers. Jak zrobić, by nazwy państw nie powtarzały się?
+
+•	
+Wyświetl wszystkie kolumny z tabeli Customers ale tylko dane tych klientów, którzy nie mają nic wpisane do kolumny Region.
+
+•	
+Wyświetl identyfikatory i nazwy wszystkich produktów (kolumny ProductID oraz ProductName z tabeli Products). Ile jest produktów w tabeli?
+
+•	
+Zmodyfikuj rozwiązanie poprzedniego zadania tak, by wyświetlana była też cena jednostkowa (kolumna UnitPrice) oraz by wyświetlane były tylko produkty, których cena jest większa od 40. Ile jest takich produktów? (można to zobaczyć w zakładce Messages)
+
+•	
+Zmodyfikuj rozwiązanie poprzedniego zadania tak, by wyświetlane były tylko produkty, których cena jest większa od 10 i mniejsza od 20. Ile jest takich produktów?
+
+•	
+Zmodyfikuj rozwiązanie poprzedniego zadania tak, by wyświetlane były tylko produkty, których cena jest mniejsza od 10 lub większa od 100. Ile jest takich produktów?
+
+•	
+Wyświetl wszystkie dane produktów należących do kategorii 2 oraz tych, które należą do kategorii 5. Ponadto zakładamy, że interesują nas tylko produkty (z wymienionych kategorii), których cena jest z przedziału od 10 do 50 włącznie. Ile jest takich produktów?
+
+•	
+Wyświetl wszystkie produkty należące do kategorii 2 oraz te, które należą do kategorii 5, ponadto ich cena jest z przedziału od 10 do 50 włącznie i nazwa rozpoczyna się od liter od A do M. Ile jest takich produktów?
+
+•	
+Wyświetl wszystkie produkty (o dowolnych nazwach) należące do kategorii 2 oraz te, które należą do kategorii 5, ponadto ich cena jest z przedziału od 10 do 50 włącznie. Ponadto na tej samej liście mają się znaleźć produktu, których nazwa rozpoczyna się od litery C lub P, bez względu na to do której należą kategorii i jaka jest ich cena. Ile jest takich produktów?
+
+•	
+Wyświetl numery zamówień, identyfikatory klientów oraz daty zamówień z tabeli Orders dla zamówień z września roku 1996.
+
+•	
+Wykorzystując funkcję MONTH wyświetl numery zamówień, identyfikatory klientów oraz daty zamówień z tabeli Orders dla zamówień z września każdego roku (tzn. rok jest dowolny).
+
+•	
+*Utwórz widok (VIEW), który wyświetli kolumny CustomerID, CompanyName, City oraz Country z tabeli Customers, przy czym chodzi nam tylko o klientów z Francji (Country = N'Germany’).
+
+•	
+*Utwórz widok (VIEW), który wyświetli kolumny CustomerID, CompanyName, City oraz Country z tabeli Customers, przy czym chodzi nam tylko o klientów z Polski. Tym razem jednak zmień w widoku nazwy kolumn odpowiednio na IdKlienta, NazwaKlienta oraz Miejscowosc.

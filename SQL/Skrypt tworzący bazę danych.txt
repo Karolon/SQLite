@@ -1,0 +1,71 @@
+CREATE TABLE RokAkademicki ( 
+	IdRokAkademicki char(7)  ,
+	Data_rozp date ,
+	Data_zak date ) ;
+/* StudentGrupa.*/  
+CREATE TABLE StudentGrupa (
+  	Id Integer  ,
+	IdOsoba int ,
+	IdGrupa int );
+
+/* Grupa.*/  
+CREATE TABLE Grupa (
+	IdGrupa Int Identity  ,
+	NrGrupy char(10) ,
+	SemestrNauki int ,
+	IdRokAkademicki char(7) );
+
+/* PrzedmiotPoprzedzajacy.*/  
+CREATE TABLE PrzedmiotPoprzedzajacy (
+  	Id Integer  ,
+	IdPoprzednik int ,
+	IdPrzedmiot int );
+
+/* Przedmiot.*/  
+CREATE TABLE Przedmiot ( 
+	IdPrzedmiot int identity  ,
+	Przedmiot varchar(128) ,
+	Symbol char(3) 
+	--,IdKatedra int 
+	);
+
+/* StopnieTytuly.*/  
+CREATE TABLE StopnieTytuly ( 
+	IdStopien int identity  ,
+	Stopien varchar(32) ,
+	Skrot varchar(16) );
+
+/* Ocena.*/  
+CREATE TABLE Ocena (
+  	Id Integer  ,
+	IdStudent int ,
+	IdPrzedmiot int ,
+	DataWystawienia date ,
+	IdDydaktyk int ,
+	Ocena decimal(2,1) );
+
+/* Panstwo.*/  
+CREATE TABLE Panstwo ( 
+	IdPanstwo int identity  ,
+	Panstwo varchar(64) );
+
+/* Osoba.*/  
+CREATE TABLE Osoba ( 
+	IdOsoba int identity  ,
+	Nazwisko varchar(62) ,
+	Imie varchar(32) ,
+	DataUrodzenia date 
+	);
+
+/* Student.*/  
+CREATE TABLE Student ( 
+	IdOsoba int  ,
+	NrIndeksu char(10) ,
+	DataRekrutacji date );
+
+/* Dydaktyk.*/  
+CREATE TABLE Dydaktyk ( 
+	IdOsoba int  
+	,IdStopien int 
+	,Podlega int 
+	);

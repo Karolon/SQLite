@@ -1,0 +1,14 @@
+Zadanie 1
+napisz zdanie sql, które wypisze Id_ksiazki i Tytuł (TYLKO TE KOLUMNY)  z tabeli Książki, przy czym interesują nas tylko książki o tytule zaczynającym się od litery B i języku orginału poslkim (w kolumnie Język_oryginału jest napis 'polski') a także te ksiażki, któe nie mają wpisanego języka oryginalu (bez wyjątku na to jaki mają tytuł)
+
+Zadanie 2
+Napisz zdanie w sql które wypisze Tytuł książki oraz Nazwisko i Imię1 autora, przy czym chodzi tylko o książki autoró urodzonych przed 1980-01-01.
+
+Zadanie 3
+Załóżmy że do tabeli Autorzy wpsane zostały dane pewnych autorów, których książęk jeszcze nie mamy w bazie. Proszę napisać zdanie sql któe wyświetli Nazwisko i Imię1 tych wszystkich autoró, których ksiażek jeszcze nie mamy w baize danych.
+
+Zadanie 4
+Napisz zdanie sql, któe dla każdego gatunku wypisze ttuły wszystkich książek z tego gatunku. Zestaw wynikowy powinien zawierać takie kolumny: Id_gatunku, Nazwa_gatunku, Tytuł i Id_autora.
+
+Zadanie 5
+Napisz zdanie sql, któe wypisze dla każdego autora (wystarczy id_autora, nie należy podawać jego innych danych) ile autor napisał książek o tytule rozpoczynającym się na literę 'A' (nie chodzi o egzemplarze, tylko tytuły, chodzi więc o dane z tabeli Ksiażki), przy czym interesują nas tylko ci autorzy, którzy napisali wiecej niż trzy takie książki.
