@@ -95,7 +95,7 @@ SELECT imie, nazwisko
 FROM Osoba o INNER JOIN Student s on o.IdOsoba = s.IdOsoba
 INNER JOIN Dydaktyk d on o.IdOsoba = d.IdOsoba
 --3.17
-SELECT 'Pan ' || imie || ' ' || nazwisko
+SELECT 'Pan ' || imie || ' ' || nazwisko as "Imie nazwisko"
 FROM Osoba o INNER JOIN Student s on s.IdOsoba = o.IdOsoba
 WHERE imie not LIKE '%a'
 UNION
@@ -104,4 +104,61 @@ FROM Osoba o INNER JOIN Student s on s.IdOsoba = o.IdOsoba
 WHERE imie LIKE '%a'
 --3.18
 
-SELECT * FROM Ocena
+SELECT imie, nazwisko, datarekrutacji
+FROM Osoba o INNER JOIN Student s on s.IdOsoba = o.IdOsoba
+WHERE nrindeksu in ('s3045', 's3162', 's3177');
+
+--3.19
+SELECT imie, nazwisko, datarekrutacji, nrindeksu
+FROM Osoba o INNER JOIN Student s on s.IdOsoba = o.IdOsoba
+WHERE imie like '%a' and (nazwisko like 'B%' or datarekrutacji LIKE '2012%')
+
+--3.20
+SELECT DISTINCT imie, nazwisko, p.Przedmiot, oc.Ocena
+FROM Osoba o INNER JOIN Ocena oc on o.IdOsoba = oc.IdStudent
+INNER JOIN Przedmiot p on oc.IdPrzedmiot = p.IdPrzedmiot
+WHERE imie not like '%a' and p.Przedmiot LIKE '%admin%' notNULL and p.Przedmiot LIKE '%bazy%' notNULL ;
+
+--3.21
+
+SELECT DISTINCT imie, nazwisko, Przedmiot
+FROM Osoba o INNER JOIN Ocena oc on o.IdOsoba = oc.IdStudent
+INNER JOIN Przedmiot p on oc.IdPrzedmiot = p.IdPrzedmiot
+WHERE p.Przedmiot LIKE '%admin%' notNULL and p.Przedmiot LIKE '%bazy%' like NULL;
+
+--4.1
+SELECT DISTINCT COUNT(*) as "Ilosc przedmiotów" from Przedmiot;
+
+--4.2
+SELECT COUNT(*)
+from Student WHERE datarekrutacji LIKE '%2012%';
+
+--4.3 
+SELECT ROUND(AVG(ocena),2) as "AVERAGE", MAX(ocena) as 'MAX', MIN(ocena) as 'MIN' 
+FROM Ocena o INNER JOIN Przedmiot p on o.IdPrzedmiot = p.IdPrzedmiot ;
+WHERE p.Symbol like 'AM1'
+
+--4.4
+SELECT COUNT(Ocena), ROUND(AVG(Ocena),2), przedmiot
+FROM Ocena o RIGHT JOIN Przedmiot p on o.IdPrzedmiot = p.IdPrzedmiot
+GROUP by Przedmiot;
+
+--4.5 
+SELECT COUNT(ocena), ROUND(AVG(ocena),2), przedmiot, imie, nazwisko
+FROM Ocena oc INNER JOIN Przedmiot p ON oc.IdPrzedmiot = p.IdPrzedmiot
+INNER JOIN Osoba os on oc.IdStudent = os.IdOsoba
+GROUP by imie, Przedmiot;
+
+--4.6
+SELECT COUNT(ocena) as 'ilosc', ROUND(AVG(ocena),2) as 'average', przedmiot, imie, nazwisko
+FROM Ocena oc INNER JOIN Przedmiot p ON oc.IdPrzedmiot = p.IdPrzedmiot
+INNER JOIN Osoba os on oc.IdStudent = os.IdOsoba
+GROUP by imie, Przedmiot
+HAVING ilosc < 2
+ORDER by Przedmiot, average DESC
+
+--4.7
+SELECT przedmiot 
+From Przedmiot p INNER JOIN Ocena oc on oc.IdPrzedmiot = p.IdPrzedmiot
+HAVING COUNT(Ocena > 2) > 5
+GROUP by Przedmiot
