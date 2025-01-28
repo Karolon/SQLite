@@ -160,5 +160,49 @@ ORDER by Przedmiot, average DESC
 --4.7
 SELECT przedmiot 
 From Przedmiot p INNER JOIN Ocena oc on oc.IdPrzedmiot = p.IdPrzedmiot
-HAVING COUNT(Ocena > 2) > 5
-GROUP by Przedmiot
+WHERE ocena >= 3
+GROUP by przedmiot
+HAVING COUNT(Ocena) > 5
+
+--4.8 imie, nazwisko, ilosc ocen pozytywnych
+SELECT imie, nazwisko, COUNT(Ocena) as "Ilosc ocen pozytywnych"
+FROM Osoba o INNER JOIN Ocena oc on oc.IdStudent = o.IdOsoba
+WHERE Ocena > 2
+GROUP by imie, nazwisko
+LIMIT 2
+
+--4.9 pierwsza litera imienia . nazwisko osobyu z najwiękrzą średnią
+SELECT substr(imie,1,1) || '.' || nazwisko as login
+from Osoba o INNER JOIN Ocena oc on o.IdOsoba = oc.IdStudent
+GROUP by imie, nazwisko
+ORDER by avg(Ocena) DESC
+LIMIT 1
+
+--4.10 podaj imie, nazwisko, nr idneksu studenta, który ma najniższa i najmniejszą średnią
+SELECT imie, nazwisko, nrindeksu
+from Osoba o INNER JOIN Ocena oc on o.IdOsoba = oc.IdStudent
+INNER JOIN Student s on s.IdOsoba = o.IdOsoba
+GROUP by imie, nazwisko
+ORDER by avg(Ocena) DESC
+LIMIT 1
+UNION
+SELECT imie, nazwisko, nrindeksu
+from Osoba o INNER JOIN Ocena oc on o.IdOsoba = oc.IdStudent
+INNER JOIN Student s on s.IdOsoba = o.IdOsoba
+GROUP by imie, nazwisko
+ORDER by avg(Ocena)
+LIMIT 1
+
+--5.1
+SELECT imie, nazwisko
+FROM Osoba o WHERE o.IdOsoba in (SELECT idosoba FROM Student) 
+
+--5.2
+SELECT DISTINCT przedmiot
+FROM Przedmiot WHERE idprzedmiot in (SELECT idprzedmiot from Ocena)
+
+--5.3
+SELECT imie, nazwisko
+FROM Osoba WHERE idosoba in (SELECT idosoba FROM Student WHERE datarekrutacji LIKE substr((SELECT datarekrutacji FROM Student WHERE idosoba in (SELECT idosoba FROM Osoba WHERE imie like 'alberta')),1,4) || '%')
+
+--5.4
