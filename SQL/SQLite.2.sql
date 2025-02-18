@@ -1,0 +1,12 @@
+DROP TABLE Miasto;
+CREATE TABLE Miasto(IdMiasto INT PRIMARY KEY, Miasto text, IdPanstwo int);
+CREATE TABLE Program(IdPrzedmiot int, SemestrNauki int, IdWydzial int);
+CREATE TABLE Wydzial(IdWydzial int PRIMARY key, Wydzial text, idosoba int);
+CREATE TABLE Katedra(IdKatedra int PRIMARY key, Katedra text, idosoba int, idwydzial int);
+ALTER TABLE Osoba ADD COLUMN PESEL int;
+ALTER TABLE Osoba ADD COLUMN Plec text;
+ALTER TABLE Osoba ADD COLUMN idmiasto int;
+ALTER TABLE Osoba ADD COLUMN idpanstwo int;
+ALTER TABLE Grupa drop COLUMN idgrupa;
+ALTER TABLE StudentGrupa DROP COLUMN id;
+ALTER TABLE StudentGrupa add COLUMN idrokakademicki int;
