@@ -206,3 +206,27 @@ SELECT imie, nazwisko
 FROM Osoba WHERE idosoba in (SELECT idosoba FROM Student WHERE datarekrutacji LIKE substr((SELECT datarekrutacji FROM Student WHERE idosoba in (SELECT idosoba FROM Osoba WHERE imie like 'alberta')),1,4) || '%')
 
 --5.4
+SELECT imie, nazwisko, nrindeksu
+FROM Osoba WHERE idosoba in (SELECT idosoba FROM Student ORDER by datarekrutacji DESC LIMIT 1)
+
+--5.5
+SELECT imie, nazwisko
+FROM Osoba WHERE idosoba in (SELECT idstudent from Ocena GROUP by idstudent HAVING avg(ocena) >
+                             (SELECT avg(Ocena) FROM Ocena where idstudent in (SELECT idosoba FROM Osoba WHERE imie like 'hier%')))
+
+--5.6
+SELECT imie, nazwisko 
+FROM Osoba WHERE idosoba in 
+(SELECT idstudent from Ocena GROUP by idstudent HAVING avg(ocena) > 
+(SELECT avg(Ocena) FROM Ocena where idstudent in (SELECT idosoba FROM Osoba WHERE nazwisko like 'anan%')))
+and idosoba in (SELECT idosoba FROM Student WHERE datarekrutacji LIKE 
+substr((SELECT datarekrutacji FROM Student WHERE idosoba in (SELECT idosoba FROM Osoba WHERE imie like 'gryz%')),1,4) || '%')
+
+--5.7
+SELECT imie, nazwisko
+FROM Osoba where idosoba in 
+(SELECT idstudent FROM Ocena GROUP by idstudent ORDER by avg(Ocena) desc LIMIT 1)
+
+--6.1
+
+
